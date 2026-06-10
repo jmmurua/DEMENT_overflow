@@ -21,18 +21,18 @@ This repository contains X data files, Y code scripts, and this README document,
 ### Files for simulations
 
 1. Common files
-   a) DEMENT.0.7.6.R
-   b) DEMENT.ge
-   c) DEMENTBatch.R
-   d) climate2.txt
-   e) Ea.txt
-   f) inputs.txt
-   g) substrates.txt
+   - DEMENT.0.7.6.R
+   - DEMENT.ge
+   - DEMENTBatch.R
+   - climate2.txt
+   - Ea.txt
+   - inputs.txt
+   - substrates.txt
 
 2. Model parameters
-   a) params1.txt
-   b) params2.txt
-   c) params3.txt
+   - params1.txt
+   - params2.txt
+   - params3.txt
    
 
 ## Code scripts and workflow
