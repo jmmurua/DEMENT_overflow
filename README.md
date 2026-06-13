@@ -1,40 +1,69 @@
 # DEMENT_overflow
 
 ## Data and code file overview
-This repository contains X data files, Y code scripts, and this README document, with the following data and code filenames and variables
+This repository contains 24 parameter files, 16 code scripts, 4 txt files containing simulation inputs, and this README document, with the following data and code filenames and variables
 
-## Data files and variables
+## Files
 
 ### Main scripts
 1. JoseMurua_DEMENT_rep_Simulation_Setup.R
-2. JoseMurua_DEMENT_rep_Figures_HR.R
-3. JoseMurua_DEMENT_rep_Figures_HRo.R
-4. JoseMurua_DEMENT_rep_Figures_LR.R
-5. DEMENTjob_1.sh
-6. DEMENTjob_2.sh
-7. DEMENTjob_3.sh
-8. Processing_job_HR.sh
-9. Processing_job_HRo.sh
-10. Processing_job_LR.sh
+2. JoseMurua_DEMENT_rep_Processing_HR.R
+3. JoseMurua_DEMENT_rep_Processing_HRo.R
+4. JoseMurua_DEMENT_rep_Processing_LR.R
+5. JoseMurua_DEMENT_rep_Processing_LRo.R
+6. JoseMurua_DEMENT_rep_Figures.R
+7. DEMENTjob_1.sh
+8. DEMENTjob_2.sh
+9. DEMENTjob_3.sh
+10. DEMENTjob_4.sh
+11. Processing_job_HR.sh
+12. Processing_job_HRo.sh
+13. Processing_job_LR.sh
+14. Processing_job_LRo.sh
 
 
 ### Files for simulations
 
 1. Common files
-   - DEMENT.0.7.6.R
+   - DEMENT.0.7.6.R: This file contains the code for the DEMENT model
    - DEMENT.ge
    - DEMENTBatch.R
-   - climate2.txt
-   - Ea.txt
-   - inputs.txt
-   - substrates.txt
+   - climate2.txt: This file contains abiotic forcing variables (temperature and moisture)
+   - Ea.txt: This file contains the activation energy for the degradation of different polymers
+   - inputs.txt: This file specifies substrate inpus per time step in DEMENT
+   - substrates.txt: This file specifies the initial amount of litter substrate in simulations
 
-2. Model parameters
-   - params1.txt
-   - params2.txt
-   - params3.txt
-   
+2. Model parameter files
 
-## Code scripts and workflow
+   Each simulation scenario directory contains four parameter files
+   - params1.txt: 100 taxa, CO2 overflow
+   - params2.txt: 1 taxon, CO2 overflow
+   - params3.txt: 1 taxon, DOC overflow
+   - params4.txt: 100 taxa, DOC overflow
+  
+   These parameter files vary between scenarios in the following aspects:
+   - Flexible biomass stoichiometry
+   - Enzyme allocation
+   - Uptake allocation
+
+## Workflow
+
+There are two potential workflows:
+1. Run the simulations from scratch (requires high performance computing)
+2. Reproduce the figures from simulation outputs
+
+### Run simulations from scratch
+
+1. Run the script "JoseMurua_DEMENT_rep_Simulation_Setup.R". This does the following:
+   - Creates additional directories inside each scenario directory. The new directories correspond to different initial litter chemistries (from C:N = 10 to C:N = 90)
+   - The corresponding parameter files are put inside of each of these new directories together with files in the "Common_files" directory
+   - The intial litter chemistries are calculated and txt files are created for each of these. The files are then placed in the correct directory
+   - A list of batch commands is created to run each of the simulations. This list is exported as a txt file and is later used to run the simulations in paralell
+   - A list of directories is created and exported as a txt file to run each simulation. The directory specified in the script **should be replaced with your own directory**
+   - A list of timestamps is generated and exported as a txt file. This will be used to identify each of the simulations
+
+2. Put the entire directory in a HPC environment
+3. Submit files "DEMENTjob" files 1 to 4 as jobs to run the simulations in paralell. Model outputs will be generated as an R object containing a nested list of outputs
+4. Submit files "Processing_job" HR to LRo as jobs to process the R objects containing the simulation outputs. This task will use the "Processing" R scripts to generate a series of txt files containing simulation outputs in a more usable format. The subscripts HR and LR stand for "high redundancy" (i.e., simulations with 1 taxon) and "low redundancy" (i.e., simulations with 100 taxa), respectively. If the subscript includes a lowercase "o", this indicates that overflow occurs as dissolved organic matter (i.e., DOC). 
 
 ## Software versions
