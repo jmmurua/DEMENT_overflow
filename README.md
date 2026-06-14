@@ -26,7 +26,6 @@ This repository contains 24 parameter files, 16 code scripts, 4 txt files contai
 
 1. Common files
    - DEMENT.0.7.6.R: This file contains the code for the DEMENT model
-   - DEMENT.ge
    - DEMENTBatch.R. This file executes the DEMENT code provided with a timestamp and parameter file ID (single integer) as inputs
    - climate2.txt: This file contains abiotic forcing variables (temperature and moisture)
    - Ea.txt: This file contains the activation energy for the degradation of different polymers
