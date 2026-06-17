@@ -5,6 +5,87 @@ This repository contains 24 parameter files, 16 code scripts, 4 txt files contai
 
 ## Files
 
+### Data files and variables
+
+Files are named based on the main variable they contain from simulation outputs, followed by a subscript
+The subscript represents the following:
+- HR: "High redundancy". Contains data from simulations with 1 taxon, where carbon overflow occurs as CO2
+- HRo: "High redundancy - overflow". Contains data from simulations with 1 taxon, where carbon overflow occurs as dissolved organic carbon
+- LR: "Low redundancy". Contains data from simulations with 100 taxa, where carbon overflow occurs as CO2
+- LRo: "Low redundancy - overflow". Contains data from simulations with 100 taxa, where carbon overflow occurs as dissolved organic carbon
+
+All datasets share the following variables:
+- Simulation: Simulation identifier that consists of the mechanism and the litter C:N separated by an underscore
+- Mechanism: Specifies the mechanism that solves elemental imbalance. Can take the following values:
+	- Overflow
+	- Stoichiometry
+	- Enzyme
+	- Enzyme-Uptake
+	- All-NoUptake
+	- All
+- Litter C:N: Specifies the initial litter carbon to nitrogen ratio in that simulation. Corresponds to a number preceded by "CN"
+- Days: Specifies the time-step of the simulation as number of days since time 0.
+
+**Note: In all cases, to get the correct units, variables must be divided by the grid size of simulations. In our case, the grid was 100 x 100 = 10,000**
+
+1. Biomass
+	- C.biomass: Total microbial carbon biomass (mg cm-2)
+	- N.biomass: Total microbial nitrogen biomass (mg cm-2)
+	- P.biomass: Total microbial phosphorus biomass (mg cm-2)
+	- Biomass: Total microbial biomass (mg cm-2)
+	
+2. EnzProdSerL
+	- Enzyme: Enzyme identifier
+	- Abundance: Amount of enzyme (mg cm-2)
+	- C.biomass: Total microbial carbon biomass (mg cm-2)
+	- N.biomass: Total microbial nitrogen biomass (mg cm-2)
+	- P.biomass: Total microbial phosphorus biomass (mg cm-2)
+	- Biomass: Total microbial biomass (mg cm-2)
+	- Enz.type: Element(s) targeted by the enzyme in question
+
+3. Growth:
+	- Element: Carbon, nitrogen, or phosphorus
+	- Growth: Amount of microbial biomass growth in units of a specific element (mg cm-2)
+	
+4. LitterSubsL
+	- Litter.C: Carbon present as polymer in litter (mg cm-2)
+	- Litter.N: Nitrogen present as polymer in litter (mg cm-2)
+	- Substrate: Litter substrate identifier
+	- Abundance: Abundance of a specific substrate in carbon units (mg cm-2)
+	- Subs.type: Main element contained in a specific substrate
+	
+5. N_MonomerUptake
+	- NH4: Uptake of ammonium in nitrogen units (mg cm-2)
+	- PO4: Uptake of phosphate in nitrogen units (mg cm-2)
+	- DeadMic: Uptake of microbial necromass monomers in nitrogen units (mg cm-2)
+	- DeadEnz: Uptake of inactive enzyme monomers in nitrogen units (mg cm-2)
+	- Cellulose: Uptake of cellulose monomers in nitrogen units (mg cm-2)
+	- Hemicellulose: Uptake of hemicellulose monomers in nitrogen units (mg cm-2)
+	- Starch: Uptake of starch monomers in nitrogen units (mg cm-2)
+	- Chitin: Uptake of chitin monomers in nitrogen units (mg cm-2)
+	- Lignin: Uptake of lignin monomers in nitrogen units (mg cm-2)
+	- Protein1: Uptake of protein1 monomers in nitrogen units (mg cm-2)
+	- Protein2: Uptake of protein2 monomers in nitrogen units (mg cm-2)
+	- Protein3: Uptake of protein3 monomers in nitrogen units (mg cm-2)
+	- OrgP1: Uptake of organic phosphorus1 monomers in nitrogen units (mg cm-2)
+	- OrgP2: Uptake of organic phosphorus2 monomers in nitrogen units (mg cm-2)
+	- Tot.recycl: Total nitrogen uptake from from necromass plus inactive enzymes (mg cm-2)
+	- Tot.litt: Total nitrogen uptake from litter substrates (mg cm-2)
+	
+6. Necromass
+	- DeadMic: Total microbial necromass (mg cm-2)
+	- DeadEnz: Total inactive enzymes (mg cm-2)
+	
+7. RespComp
+	- Source: Specific component of respiration
+	- Resp: Amount of CO2 produced from a specific component (mg cm-2)
+	
+8. UptSer
+	- Taxon_Uptake_C: Total carbon uptake (mg cm-2)
+	- Taxon_Uptake_N: Total nitrogen uptake (mg cm-2)
+	- Taxon_Uptake_P: Total phosphorus uptake (mg cm-2)
+
+
 ### Main scripts
 1. JoseMurua_DEMENT_rep_Simulation_Setup.R
 2. JoseMurua_DEMENT_rep_Processing_HR.R
