@@ -67,7 +67,7 @@ There are two possible workflows:
 
 ### Reproduce figures from simulation outputs
 
-With the simulation outputs now processed and exported as txt files, these can now be used locally to reproduce the figures.
+With the simulation outputs now processed and exported as txt files, these can now be used locally to reproduce the figures. These files can be found in the DRYAD repository under the DOI: 10.5061/dryad.jh9w0vtsm
 
 1. Run the script "JoseMurua_DEMENT_rep_Figures.R". This script will read the corresponding txt files and produce all figures.
 
